@@ -1,9 +1,10 @@
 import "./App.css";
+import Navbar from "./components/ui/Navbar";
 
 function App() {
   return (
     <div className="bg-neutral-900">
-      <p className="text-neutral-100">Hello, Tailwind CSS!</p>
+      <Navbar />
     </div>
   );
 }
