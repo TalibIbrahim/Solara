@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentWeather, setWeatherUnits } from "../store";
+import Tilt from "react-parallax-tilt";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
@@ -46,28 +47,47 @@ const CurrentWeather = () => {
   };
 
   const cardStyle =
-    "bg-sky-700 w-60 h-24 text-2xl text-center p-3 mx-5 my-2 flex justify-center items-center rounded-xl";
+    "bg-sky-700 w-60 h-24 text-2xl text-center p-3 mx-5 my-2 flex justify-center drop-shadow-md shadow-md items-center rounded-xl";
 
   return (
     <div className="bg-neutral-700 h-screen">
       <div className="text-white poppins-medium p-20 flex items-start justify-around">
-        <div className="temperature-div bg-sky-700 w-60 h-60 flex justify-center text-center items-center rounded-xl p-2 ">
-          <p>
-            <div className="text-8xl mt-7">{temperature}</div>
-            <div className="text-5xl text-gray-300 mt-3">{temperatureUnit}</div>
-          </p>
-        </div>
+        <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6}>
+          <div className="temperature-div bg-sky-700 w-60 h-60 flex justify-center text-center items-center rounded-xl p-2 drop-shadow-md shadow-md">
+            <p>
+              <div className="text-8xl mt-7">{temperature}</div>
+              <div className="text-5xl text-gray-300 mt-3">
+                {temperatureUnit}
+              </div>
+            </p>
+          </div>
+        </Tilt>
+
         <div className="flex justify-around items-center flex-wrap w-3/4 mt-4">
-          <p className={cardStyle}>Feels Like: {feelsLike}</p>
-          <p className={cardStyle}>Humidity: {humidity}</p>
-          <p className={cardStyle}>Wind Speed: {windSpeed}</p>
-          <p className={cardStyle}>Wind Direction: {windDirection}</p>
-          <p className={cardStyle}>Rain: {rain}</p>
-          <p className={cardStyle}>Time of Day: {timeOfDay}</p>
-          <p className={cardStyle}>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Feels Like: {feelsLike}
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Humidity: {humidity}
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Wind Speed: {windSpeed}
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Wind Direction: {windDirection}
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Rain: {rain}
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Time of Day: {timeOfDay}
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
             {currentWeather.time && formatTimeTo12Hour(currentWeather.time)}
-          </p>
-          <p className={cardStyle}>Precipitation: {precipitation}</p>
+          </Tilt>
+          <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} className={cardStyle}>
+            Precipitation: {precipitation}
+          </Tilt>
         </div>
       </div>
     </div>
