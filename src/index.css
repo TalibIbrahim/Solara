@@ -44,10 +44,13 @@
   display: flex;
   font-weight: 500;
   justify-content: space-around;
-  transition: 0.2s ease-in;
+  transition: 0.3s ease-in-out;
   width: 15%;
+  font-size: 1.2rem;
+  margin-bottom: 0px;
 }
 .links a:hover {
   cursor: pointer;
   color: #ffffff;
+  margin-bottom: 1px;
 }
