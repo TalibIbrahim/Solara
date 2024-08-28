@@ -1,0 +1,26 @@
+.temperature-div {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+
+  transition: all 0.2s ease-in-out;
+}
+
+.detail-card:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.main-bg {
+  background: linear-gradient(
+    180deg,
+    #203580 0%,
+    #443e73 15%,
+    #443a66 30%,
+    #27284f 50%,
+    #171e44 70%
+  );
+}

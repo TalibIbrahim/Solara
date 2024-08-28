@@ -4,10 +4,11 @@ import CurrentWeather from "./components/CurrentWeather";
 
 function App() {
   return (
-    <div className="bg-neutral-900">
+    <main className="h-screen">
       <Navbar />
+
       <CurrentWeather />
-    </div>
+    </main>
   );
 }
 
