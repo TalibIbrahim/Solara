@@ -105,7 +105,7 @@ const CurrentWeather = () => {
 
   return (
     <section className="main-bg h-screen">
-      <div className=" pl-32 pt-10 flex justify-start items-center ">
+      <div className=" pl-5 lg:pl-20 pt-10 flex lg:justify-start justify-between items-center ">
         <button
           className="h-16 w-48 bg-violet-800 rounded-xl text-center flex justify-center items-center text-white text-lg poppins-medium"
           onClick={getLocation}
@@ -114,7 +114,7 @@ const CurrentWeather = () => {
         </button>
         <button
           onClick={reloadWeather}
-          className="bg-violet-800 rounded-xl text-white h-16 w-16 ml-4 text-center"
+          className="bg-violet-800 rounded-xl text-white h-16 w-16 mr-5 lg:ml-4 text-center flex justify-center items-center"
         >
           <span className="material-symbols-outlined text-3xl  ">refresh</span>
         </button>

@@ -3,23 +3,23 @@ import React from "react";
 const Navbar = () => {
   return (
     <nav className="bg-neutral-900 h-24 flex justify-between items-center ">
-      <div className="text-white poppins-semibold text-6xl ml-40  cursor-pointer ">
+      <div className="text-white poppins-semibold text-4xl lg:text-6xl ml-8 lg:ml-20 cursor-pointer ">
         Solara
       </div>
-      <div className="links mr-40">
+      <div className="links flex space-x-6 lg:space-x-0 mr-16 lg:mr-20 text-lg lg:text-2xl">
         <a
           href="https://open-meteo.com/"
           target="_blank"
           rel="noreferrer noopener"
         >
-          API Service
+          API
         </a>
         <a
           href="https://github.com/TalibIbrahim/Solara"
           target="_blank"
           rel="noreferrer noopener"
         >
-          GitHub Repo
+          GitHub
         </a>
       </div>
     </nav>
