@@ -123,7 +123,7 @@ const CurrentWeather = () => {
       ) : (
         <div className="text-white poppins-medium pt-10 p-5 lg:p-20 flex flex-col lg:flex-row items-center lg:items-start justify-around">
           <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7}>
-            <div className="temperature-div cursor-pointer bg-sky-700 w-40 h-20 lg:mt-6 lg:w-56 lg:h-52 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
+            <div className="temperature-div cursor-pointer bg-sky-700 w-44 h-40 lg:mt-6 lg:w-56 lg:h-52 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
               <div className="flex items-center lg:items-center">
                 <p className="text-5xl lg:text-6xl -mb-2">{temperature}</p>
                 <p className="text-2xl lg:text-5xl text-gray-300 mb-4 lg:mt-3">
