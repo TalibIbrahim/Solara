@@ -98,14 +98,12 @@ const CurrentWeather = () => {
       <TailSpin color="#fff" height={100} width={100} />
     </div>
   );
-
-  //style for details card
   const cardStyle =
     "detail-card w-60 h-24 text-2xl text-center p-3 mx-5 my-2 flex justify-center drop-shadow-md shadow-md items-center rounded-xl cursor-pointer";
 
   return (
     <section className="main-bg h-screen">
-      <div className=" pl-5 lg:pl-20 pt-10 flex lg:justify-start justify-between items-center ">
+      <div className="pl-5 lg:pl-20 pt-10 flex lg:justify-start justify-between items-center">
         <button
           className="h-16 w-48 bg-violet-800 rounded-xl text-center flex justify-center items-center text-white text-lg poppins-medium"
           onClick={getLocation}
@@ -116,25 +114,30 @@ const CurrentWeather = () => {
           onClick={reloadWeather}
           className="bg-violet-800 rounded-xl text-white h-16 w-16 mr-5 lg:ml-4 text-center flex justify-center items-center"
         >
-          <span className="material-symbols-outlined text-3xl  ">refresh</span>
+          <span className="material-symbols-outlined text-3xl">refresh</span>
         </button>
       </div>
+
       {isLoading ? (
         loadingState
       ) : (
-        <div className="text-white poppins-medium pt-10 p-20 flex items-start justify-around">
+        <div className="text-white poppins-medium pt-10 p-5 lg:p-20 flex flex-col lg:flex-row items-center lg:items-start justify-around">
           <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7}>
-            <div className="temperature-div cursor-pointer bg-sky-700 w-60 h-60 flex justify-center text-center items-center rounded-xl p-2 drop-shadow-md shadow-md">
-              <div>
-                <p className="text-8xl mt-7">{temperature}</p>
-                <p className="text-5xl text-gray-300 mt-3">{temperatureUnit}</p>
+            <div className="temperature-div cursor-pointer bg-sky-700 w-44 h-40 lg:mt-6 lg:w-56 lg:h-52 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
+              <div className="flex items-center lg:items-center">
+                <p className="text-5xl lg:text-6xl -mb-2">{temperature}</p>
+                <p className="text-2xl lg:text-5xl text-gray-300 mb-4 lg:mt-3">
+                  {temperatureUnit}
+                </p>
               </div>
             </div>
           </Tilt>
-
-          <div className="flex justify-around items-center flex-wrap w-3/4 mt-4">
+          <div className="card-container lg:w-3/4 lg:mt-4">
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className={cardStyle}>
-              Feels Like: {feelsLike}
+              {currentWeather.time && formatTimeTo12Hour(currentWeather.time)}
+            </Tilt>
+            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className={cardStyle}>
+              Time of Day: {timeOfDay}
             </Tilt>
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className={cardStyle}>
               Humidity: {humidity}
@@ -149,10 +152,7 @@ const CurrentWeather = () => {
               Rain: {rain}
             </Tilt>
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className={cardStyle}>
-              Time of Day: {timeOfDay}
-            </Tilt>
-            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className={cardStyle}>
-              {currentWeather.time && formatTimeTo12Hour(currentWeather.time)}
+              Feels Like: {feelsLike}
             </Tilt>
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className={cardStyle}>
               Precipitation: {precipitation}
