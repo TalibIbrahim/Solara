@@ -3,6 +3,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentWeather: {},
   weatherUnits: {},
+  loading: true,
 };
 
 const weatherSlice = createSlice({
@@ -15,6 +16,9 @@ const weatherSlice = createSlice({
     setWeatherUnits(state, action) {
       state.weatherUnits = action.payload;
     },
+    setLoading(state, action) {
+      state.loading = action.payload;
+    },
   },
 });
 
@@ -22,5 +26,6 @@ const store = configureStore({
   reducer: weatherSlice.reducer,
 });
 
-export const { setCurrentWeather, setWeatherUnits } = weatherSlice.actions;
+export const { setCurrentWeather, setWeatherUnits, setLoading } =
+  weatherSlice.actions;
 export default store;
