@@ -4,6 +4,7 @@ const initialState = {
   currentWeather: {},
   weatherUnits: {},
   loading: true,
+  city: "...",
 };
 
 const weatherSlice = createSlice({
@@ -19,6 +20,9 @@ const weatherSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload;
     },
+    setCity(state, action) {
+      state.city = action.payload;
+    },
   },
 });
 
@@ -26,6 +30,6 @@ const store = configureStore({
   reducer: weatherSlice.reducer,
 });
 
-export const { setCurrentWeather, setWeatherUnits, setLoading } =
+export const { setCurrentWeather, setWeatherUnits, setLoading, setCity } =
   weatherSlice.actions;
 export default store;

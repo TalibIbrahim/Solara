@@ -1,12 +1,18 @@
 import React from "react";
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentWeather, setWeatherUnits, setLoading } from "../store";
+import {
+  setCurrentWeather,
+  setWeatherUnits,
+  setLoading,
+  setCity,
+} from "../store";
 import Tilt from "react-parallax-tilt";
 import { TailSpin } from "react-loader-spinner";
 
 import "./CurrentWeather.css";
 import SearchForm from "./SearchForm";
+import CityCard from "./CityCard";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
@@ -18,9 +24,30 @@ const CurrentWeather = () => {
   const [longitude, setLongitude] = useState(null);
   const [latitude, setLatitude] = useState(null);
 
+  const extractCityAndCountry = (displayName) => {
+    const parts = displayName.split(",").map((part) => part.trim());
+
+    const city = parts[0];
+    const country = parts[parts.length - 1];
+
+    return `${city}, ${country}`;
+  };
+
+  const getCity = useCallback(
+    async (latitude, longitude) => {
+      const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const simplifiedAddress = extractCityAndCountry(data.display_name);
+      dispatch(setCity(simplifiedAddress));
+    },
+    [dispatch]
+  );
+
   const fetchWeather = useCallback(
     async (latitude, longitude) => {
       try {
+        await getCity(latitude, longitude);
         const response = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&timezone=auto`
         );
@@ -35,12 +62,10 @@ const CurrentWeather = () => {
         dispatch(setLoading(false));
       }
     },
-    [dispatch]
+    [dispatch, getCity]
   );
 
   const getLocation = useCallback(() => {
-    dispatch(setLoading(true));
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -50,7 +75,6 @@ const CurrentWeather = () => {
           console.log("Latitude is :", latitude);
           console.log("Longitude is :", longitude);
           fetchWeather(latitude, longitude);
-          dispatch(setLoading(false));
         },
         (error) => {
           console.error("Error getting location:", error);
@@ -59,6 +83,7 @@ const CurrentWeather = () => {
       );
     } else {
       console.log("Geolocation is not supported by this browser.");
+      dispatch(setLoading(false));
     }
   }, [fetchWeather, dispatch]);
 
@@ -105,6 +130,7 @@ const CurrentWeather = () => {
 
   return (
     <section className="pb-10">
+      <CityCard />
       <SearchForm />
       <div className="pl-5 lg:pl-20 pt-10 flex justify-between items-center">
         <div className="w-92 flex justify-start items-center">

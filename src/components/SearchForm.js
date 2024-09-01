@@ -1,6 +1,11 @@
 import React from "react";
 import { useCallback, useRef } from "react";
-import { setCurrentWeather, setWeatherUnits, setLoading } from "../store";
+import {
+  setCurrentWeather,
+  setWeatherUnits,
+  setLoading,
+  setCity,
+} from "../store";
 
 import { useDispatch } from "react-redux";
 import "./SearchForm.css";
@@ -29,6 +34,15 @@ const SearchForm = () => {
     [dispatch]
   );
 
+  const extractCityAndCountry = (displayName) => {
+    const parts = displayName.split(",").map((part) => part.trim());
+
+    const city = parts[0];
+    const country = parts[parts.length - 1];
+
+    return `${city}, ${country}`;
+  };
+
   const formSubmitHandler = async (e) => {
     dispatch(setLoading(true));
     e.preventDefault();
@@ -48,6 +62,11 @@ const SearchForm = () => {
       const data = await response.json();
 
       if (data.length > 0) {
+        const displayName = data[0].display_name;
+        const simplifiedAddress = extractCityAndCountry(displayName);
+        console.log("Simplified address is:", simplifiedAddress);
+
+        dispatch(setCity(simplifiedAddress.trim()));
         console.log("Longitude and Latitude are: ", data[0].lon, data[0].lat);
 
         const longitude = data[0].lon;
