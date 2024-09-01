@@ -1,21 +1,22 @@
 import React from "react";
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentWeather, setWeatherUnits } from "../store";
+import { setCurrentWeather, setWeatherUnits, setLoading } from "../store";
 import Tilt from "react-parallax-tilt";
 import { TailSpin } from "react-loader-spinner";
 
 import "./CurrentWeather.css";
+import SearchForm from "./SearchForm";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
   const currentWeather = useSelector((state) => state.currentWeather);
   const weatherUnits = useSelector((state) => state.weatherUnits);
+  const isLoading = useSelector((state) => state.loading);
 
   // state for storing the user's location and function for getting it
   const [longitude, setLongitude] = useState(null);
   const [latitude, setLatitude] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
 
   const fetchWeather = useCallback(
     async (latitude, longitude) => {
@@ -27,18 +28,19 @@ const CurrentWeather = () => {
         const data = await response.json();
         dispatch(setCurrentWeather(data.current));
         dispatch(setWeatherUnits(data.current_units));
-        setIsLoading(false);
+        dispatch(setLoading(false));
         console.log(data);
       } catch (err) {
         console.log("Error fetching data", err);
-        setIsLoading(false);
+        dispatch(setLoading(false));
       }
     },
     [dispatch]
   );
 
   const getLocation = useCallback(() => {
-    setIsLoading(true);
+    dispatch(setLoading(true));
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -48,7 +50,7 @@ const CurrentWeather = () => {
           console.log("Latitude is :", latitude);
           console.log("Longitude is :", longitude);
           fetchWeather(latitude, longitude);
-          setIsLoading(false);
+          dispatch(setLoading(false));
         },
         (error) => {
           console.error("Error getting location:", error);
@@ -58,10 +60,10 @@ const CurrentWeather = () => {
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  }, [fetchWeather]);
+  }, [fetchWeather, dispatch]);
 
   const reloadWeather = () => {
-    setIsLoading(true);
+    dispatch(setLoading(true));
     if (latitude && longitude) {
       fetchWeather(latitude, longitude);
     } else {
@@ -103,27 +105,30 @@ const CurrentWeather = () => {
 
   return (
     <section className="pb-10">
-      <div className="pl-5 lg:pl-20 pt-10 flex lg:justify-start justify-between items-center">
-        <button
-          className="h-16 w-48 bg-violet-800 rounded-xl text-center flex justify-center items-center text-white text-lg poppins-medium"
-          onClick={getLocation}
-        >
-          Get Local Weather
-        </button>
-        <button
-          onClick={reloadWeather}
-          className="bg-violet-800 rounded-xl text-white h-16 w-16 mr-5 lg:ml-4 text-center flex justify-center items-center"
-        >
-          <span className="material-symbols-outlined text-3xl">refresh</span>
-        </button>
+      <SearchForm />
+      <div className="pl-5 lg:pl-20 pt-10 flex justify-between items-center">
+        <div className="w-92 flex justify-start items-center">
+          <button
+            className="h-16 w-48 bg-violet-800 active:bg-violet-900 ease-in-out duration-300 rounded-xl text-center flex justify-center items-center text-white text-lg poppins-medium"
+            onClick={getLocation}
+          >
+            Get Local Weather
+          </button>
+          <button
+            onClick={reloadWeather}
+            className="bg-violet-800 active:bg-violet-900 ease-in-out duration-300 rounded-xl text-white h-16 w-16 mr-5 ml-4 text-center flex justify-center items-center"
+          >
+            <span className="material-symbols-outlined text-3xl">refresh</span>
+          </button>
+        </div>
       </div>
 
       {isLoading ? (
         loadingState
       ) : (
-        <div className="text-white poppins-medium pt-10 lg:p-10  xl:p-16 flex flex-col lg:flex-row items-center lg:items-start justify-around">
+        <div className="text-white poppins-medium pt-5 lg:p-10  xl:p-16 flex flex-col lg:flex-row items-center lg:items-start justify-around">
           <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7}>
-            <div className="temperature-div cursor-pointer bg-sky-700 w-56 h-56 lg:mt-6 lg:w-56 lg:h-56 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
+            <div className="temperature-div cursor-pointer w-56 h-56 mt-6 lg:w-60 lg:h-60 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
               <div className="flex items-center flex-col lg:items-center">
                 <p className="text-8xl mt-4 ">{temperature}</p>
                 <p className="text-5xl text-gray-300 mb-4 lg:mt-1">
