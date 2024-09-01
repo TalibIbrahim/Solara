@@ -99,10 +99,10 @@ const CurrentWeather = () => {
     </div>
   );
   const cardStyle =
-    "detail-card w-60 h-24 text-2xl text-center p-3 mx-5 my-2 flex justify-center drop-shadow-md shadow-md items-center rounded-xl cursor-pointer";
+    "detail-card w-52 h-24  lg:w-60 lg:h-24 text-xl lg:text-2xl  text-center p-3 mx-5 my-2 flex justify-center drop-shadow-md shadow-md items-center rounded-xl cursor-pointer";
 
   return (
-    <section className="main-bg h-screen">
+    <section className="pb-10">
       <div className="pl-5 lg:pl-20 pt-10 flex lg:justify-start justify-between items-center">
         <button
           className="h-16 w-48 bg-violet-800 rounded-xl text-center flex justify-center items-center text-white text-lg poppins-medium"
@@ -121,12 +121,12 @@ const CurrentWeather = () => {
       {isLoading ? (
         loadingState
       ) : (
-        <div className="text-white poppins-medium pt-10 p-5 lg:p-20 flex flex-col lg:flex-row items-center lg:items-start justify-around">
+        <div className="text-white poppins-medium pt-10 lg:p-10  xl:p-16 flex flex-col lg:flex-row items-center lg:items-start justify-around">
           <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7}>
-            <div className="temperature-div cursor-pointer bg-sky-700 w-44 h-40 lg:mt-6 lg:w-56 lg:h-52 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
-              <div className="flex items-center lg:items-center">
-                <p className="text-5xl lg:text-6xl -mb-2">{temperature}</p>
-                <p className="text-2xl lg:text-5xl text-gray-300 mb-4 lg:mt-3">
+            <div className="temperature-div cursor-pointer bg-sky-700 w-56 h-56 lg:mt-6 lg:w-56 lg:h-56 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
+              <div className="flex items-center flex-col lg:items-center">
+                <p className="text-8xl mt-4 ">{temperature}</p>
+                <p className="text-5xl text-gray-300 mb-4 lg:mt-1">
                   {temperatureUnit}
                 </p>
               </div>

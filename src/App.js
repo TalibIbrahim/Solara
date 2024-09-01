@@ -4,7 +4,7 @@ import CurrentWeather from "./components/CurrentWeather";
 
 function App() {
   return (
-    <main className="h-screen">
+    <main className="main-bg">
       <Navbar />
 
       <CurrentWeather />
