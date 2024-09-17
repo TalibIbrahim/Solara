@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Solara/static/css/main.9cacc511.css",
+    "main.js": "/Solara/static/js/main.59000dbe.js",
+    "index.html": "/Solara/index.html",
+    "main.9cacc511.css.map": "/Solara/static/css/main.9cacc511.css.map",
+    "main.59000dbe.js.map": "/Solara/static/js/main.59000dbe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9cacc511.css",
+    "static/js/main.59000dbe.js"
+  ]
+}
