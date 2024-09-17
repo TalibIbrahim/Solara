@@ -5,6 +5,7 @@ import {
   setWeatherUnits,
   setLoading,
   setCity,
+  setCoordinates,
 } from "../store";
 
 import { useDispatch } from "react-redux";
@@ -71,6 +72,7 @@ const SearchForm = () => {
 
         const longitude = data[0].lon;
         const latitude = data[0].lat;
+        dispatch(setCoordinates({ lat: latitude, lon: longitude }));
         await fetchWeather(latitude, longitude);
       } else {
         console.log(
