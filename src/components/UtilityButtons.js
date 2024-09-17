@@ -25,11 +25,6 @@ const UtilityButtons = () => {
   const reloadWeather = () => {
     dispatch(setLoading(true));
     if (latitude && longitude) {
-      console.log(
-        "Reloading weather data for latitude and longitude:",
-        latitude,
-        longitude
-      );
       fetchWeather(latitude, longitude);
     } else {
       console.log("No location data available");
@@ -66,8 +61,7 @@ const UtilityButtons = () => {
           const { latitude, longitude } = position.coords;
           setLatitude(latitude);
           setLongitude(longitude);
-          console.log("Latitude is :", latitudeState);
-          console.log("Longitude is :", longitudeState);
+
           dispatch(setCoordinates({ lon: longitudeState, lat: latitudeState }));
           fetchWeather(latitude, longitude);
         },

@@ -65,10 +65,8 @@ const SearchForm = () => {
       if (data.length > 0) {
         const displayName = data[0].display_name;
         const simplifiedAddress = extractCityAndCountry(displayName);
-        console.log("Simplified address is:", simplifiedAddress);
 
         dispatch(setCity(simplifiedAddress.trim()));
-        console.log("Longitude and Latitude are: ", data[0].lon, data[0].lat);
 
         const longitude = data[0].lon;
         const latitude = data[0].lat;
