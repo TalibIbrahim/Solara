@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar from "./components/ui/Navbar";
 import CurrentWeather from "./components/CurrentWeather";
+import DailyWeather from "./components/DailyWeather";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
 
       <CurrentWeather />
+      <DailyWeather />
     </main>
   );
 }

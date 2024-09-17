@@ -6,6 +6,7 @@ import {
   setLoading,
   setCity,
   setCoordinates,
+  setDailyWeather,
 } from "../store";
 
 import { useDispatch } from "react-redux";
@@ -20,11 +21,12 @@ const SearchForm = () => {
     async (latitude, longitude) => {
       try {
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&timezone=auto`
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto`
         );
 
         const data = await response.json();
         dispatch(setCurrentWeather(data.current));
+        dispatch(setDailyWeather(data.daily));
         dispatch(setWeatherUnits(data.current_units));
 
         console.log(data);

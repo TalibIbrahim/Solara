@@ -2,6 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentWeather: {},
+  dailyWeather: {},
   weatherUnits: {},
   loading: true,
   city: "...",
@@ -28,6 +29,9 @@ const weatherSlice = createSlice({
     setCoordinates(state, action) {
       state.coordinates = action.payload;
     },
+    setDailyWeather(state, action) {
+      state.dailyWeather = action.payload;
+    },
   },
 });
 
@@ -41,5 +45,6 @@ export const {
   setLoading,
   setCity,
   setCoordinates,
+  setDailyWeather,
 } = weatherSlice.actions;
 export default store;
