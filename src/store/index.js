@@ -2,7 +2,13 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentWeather: {},
-  dailyWeather: {},
+  dailyWeather: {
+    time: [],
+    weather_code: [],
+    temperature_2m_max: [],
+    temperature_2m_min: [],
+    rain_sum: [],
+  },
   weatherUnits: {},
   loading: true,
   city: "...",

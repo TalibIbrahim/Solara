@@ -21,7 +21,7 @@ const SearchForm = () => {
     async (latitude, longitude) => {
       try {
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto`
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=weather_code,temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,weather_code,temperature_2m_min,rain_sum&timezone=auto`
         );
 
         const data = await response.json();
@@ -90,15 +90,18 @@ const SearchForm = () => {
 
   return (
     <div className="flex justify-center items-center mt-8 ">
-      <form onSubmit={formSubmitHandler}>
+      <form
+        onSubmit={formSubmitHandler}
+        className="flex flex-col sm:flex-row items-center"
+      >
         <input
-          className="input-box focus:outline-none w-96  p-3 rounded-xl  text-2xl text-white poppins-regular"
+          className="input-box focus:outline-none w-full max-w-xs sm:max-w-md md:max-w-lg p-3 rounded-xl text-2xl text-white poppins-regular"
           ref={cityInputRef}
           type="text"
           placeholder="Search for a city"
         />
         <button
-          className="h-14 text-white text-xl poppins-medium px-5 ml-3 bg-violet-800 active:bg-violet-900 ease-in-out duration-300 rounded-xl text-center"
+          className="h-14 w-full sm:w-auto text-white text-xl poppins-medium px-5 mt-3 sm:mt-0 sm:ml-3 bg-violet-800 active:bg-violet-900 ease-in-out duration-300 rounded-xl text-center"
           type="submit"
         >
           Search

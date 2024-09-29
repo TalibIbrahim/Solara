@@ -66,7 +66,7 @@ const CurrentWeather = () => {
   );
 
   return (
-    <section className="pb-10">
+    <section className="mb-10 lg:mb-0">
       <CityCard />
       <SearchForm />
       <UtilityButtons />

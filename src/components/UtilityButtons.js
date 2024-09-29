@@ -38,10 +38,11 @@ const UtilityButtons = () => {
       try {
         await getCity(latitude, longitude, dispatch, setCity);
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,rain_sum&timezone=auto`
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,weather_code,rain_sum&timezone=auto`
         );
 
         const data = await response.json();
+
         dispatch(setCurrentWeather(data.current));
         dispatch(setDailyWeather(data.daily));
 
@@ -80,8 +81,8 @@ const UtilityButtons = () => {
   }, [fetchWeather, dispatch, latitudeState, longitudeState]);
 
   return (
-    <div className="pl-5 lg:pl-20 pt-10 flex justify-between items-center">
-      <div className="w-92 flex justify-start items-center">
+    <div className="pl-5 lg:pl-20 pt-10 flex justify-between items-center flex-col lg:flex-row">
+      <div className="w-full flex justify-center lg:justify-start items-center">
         <button
           className="h-16 w-48 bg-violet-800 active:bg-violet-900 ease-in-out duration-300 rounded-xl text-center flex justify-center items-center text-white text-lg poppins-medium"
           onClick={getLocation}
