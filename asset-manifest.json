@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Solara/static/css/main.9cacc511.css",
-    "main.js": "/Solara/static/js/main.fb2026c3.js",
+    "main.css": "/Solara/static/css/main.894e0729.css",
+    "main.js": "/Solara/static/js/main.f4b382cf.js",
     "index.html": "/Solara/index.html",
-    "main.9cacc511.css.map": "/Solara/static/css/main.9cacc511.css.map",
-    "main.fb2026c3.js.map": "/Solara/static/js/main.fb2026c3.js.map"
+    "main.894e0729.css.map": "/Solara/static/css/main.894e0729.css.map",
+    "main.f4b382cf.js.map": "/Solara/static/js/main.f4b382cf.js.map"
   },
   "entrypoints": [
-    "static/css/main.9cacc511.css",
-    "static/js/main.fb2026c3.js"
+    "static/css/main.894e0729.css",
+    "static/js/main.f4b382cf.js"
   ]
 }
