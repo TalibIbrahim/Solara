@@ -6,6 +6,15 @@ import {
   setDailyWeather,
 } from "../store";
 
+import clearSky from "../components/assets/clear-sky.png";
+import partlyCloudy from "../components/assets/partly-cloudy.png";
+import fog from "../components/assets/fog.png";
+import showers from "../components/assets/showers.png";
+import freezingRain from "../components/assets/freezing-rain.png";
+import snow from "../components/assets/snow.png";
+import rain from "../components/assets/rain.png";
+import thunderstorm from "../components/assets/thunderstorm.png";
+
 export const extractCityAndCountry = (displayName) => {
   const parts = displayName.split(",").map((part) => part.trim());
 
@@ -42,25 +51,25 @@ export const fetchWeather = async (latitude, longitude, dispatch) => {
 };
 
 export const weatherCodeMapping = {
-  0: "Clear sky",
-  1: "Partly cloudy",
-  2: "Partly cloudy",
-  3: "Partly cloudy",
-  45: "Fog",
-  48: "Fog",
-  51: "Drizzle",
-  53: "Drizzle",
-  55: "Drizzle",
-  61: "Rain",
-  63: "Rain",
-  65: "Rain",
-  66: "Freezing rain",
-  67: "Freezing rain",
-  71: "Snow fall",
-  73: "Snow fall",
-  75: "Snow fall",
-  80: "Showers",
-  81: "Showers",
-  82: "Showers",
-  95: "Thunderstorm",
+  0: clearSky,
+  1: partlyCloudy,
+  2: partlyCloudy,
+  3: partlyCloudy,
+  45: fog,
+  48: fog,
+  51: fog,
+  53: fog,
+  55: fog,
+  61: showers,
+  63: showers,
+  65: showers,
+  66: freezingRain,
+  67: freezingRain,
+  71: snow,
+  73: snow,
+  75: snow,
+  80: rain,
+  81: rain,
+  82: rain,
+  95: thunderstorm,
 };
