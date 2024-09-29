@@ -1,3 +1,20 @@
 .daily-weather-card {
   background-color: rgba(255, 255, 255, 0.08);
 }
+
+.customBorderStyle {
+  display: inline-block; /* Allows the border to only take the space it needs */
+  width: 100%; /* Length of the border */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Style of the border */
+  margin-top: 5px; /* Space between title and border */
+}
+
+@media (min-width: 768px) {
+  .customBorderStyle {
+    width: 92%; /* Width for medium screens and above */
+  }
+}
+
+.minTempColor {
+  color: rgba(255, 255, 255, 0.3);
+}

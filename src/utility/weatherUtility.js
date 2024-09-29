@@ -73,3 +73,8 @@ export const weatherCodeMapping = {
   82: rain,
   95: thunderstorm,
 };
+
+export const getDayOfWeek = (dateString) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+};

@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        95: "95%", // Custom width for 95%
+      },
+    },
   },
   plugins: [],
 };
