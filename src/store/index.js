@@ -11,7 +11,7 @@ const initialState = {
   },
   weatherUnits: {},
   loading: true,
-  city: "...",
+  city: "",
 
   coordinates: { lat: null, lon: null },
 };

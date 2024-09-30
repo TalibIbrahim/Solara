@@ -69,7 +69,8 @@ html {
 @media screen and (max-width: 520px) {
   body,
   .card-container {
-    grid-template-columns: 1fr; /* Single column */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Single column */
+    padding: 0.5em;
     gap: 20px;
   }
 }

@@ -14,6 +14,8 @@ import freezingRain from "../components/assets/freezing-rain.png";
 import snow from "../components/assets/snow.png";
 import rain from "../components/assets/rain.png";
 import thunderstorm from "../components/assets/thunderstorm.png";
+import heavySnow from "../components/assets/heavy-snow.png";
+import cloudy from "../components/assets/cloudy.png";
 
 export const extractCityAndCountry = (displayName) => {
   const parts = displayName.split(",").map((part) => part.trim());
@@ -55,6 +57,7 @@ export const weatherCodeMapping = {
   1: partlyCloudy,
   2: partlyCloudy,
   3: partlyCloudy,
+  30: cloudy,
   45: fog,
   48: fog,
   51: fog,
@@ -71,6 +74,8 @@ export const weatherCodeMapping = {
   80: rain,
   81: rain,
   82: rain,
+  85: heavySnow,
+  86: heavySnow,
   95: thunderstorm,
 };
 
