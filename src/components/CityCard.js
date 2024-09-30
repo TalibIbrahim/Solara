@@ -2,9 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./CityCard.css";
 import Tilt from "react-parallax-tilt";
+import Skeleton from "react-loading-skeleton"; // Import the Skeleton component
+import "react-loading-skeleton/dist/skeleton.css"; // Add CSS for Skeleton
 
 const CityCard = () => {
   const city = useSelector((state) => state.city);
+  const isLoading = useSelector((state) => state.loading);
 
   return (
     <div className="text-xl text-white poppins-semibold flex justify-center items-center mt-5">
@@ -17,7 +20,7 @@ const CityCard = () => {
             location_on
           </span>
           <p className="text-base sm:text-lg md:text-xl leading-normal">
-            {city}
+            {isLoading ? <Skeleton width={250} /> : city}
           </p>
         </div>
       </Tilt>

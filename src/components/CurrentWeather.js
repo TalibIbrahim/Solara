@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../store";
 import { fetchWeather } from "../utility/weatherUtility.js";
 import Tilt from "react-parallax-tilt";
-import { TailSpin } from "react-loader-spinner";
-
 import "./CurrentWeather.css";
 import SearchForm from "./SearchForm";
 import CityCard from "./CityCard";
 import WeatherDetails from "./WeatherDetails";
 import UtilityButtons from "./UtilityButtons";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
@@ -58,10 +58,17 @@ const CurrentWeather = () => {
   const temperature = currentWeather.temperature_2m;
   const temperatureUnit = weatherUnits.temperature_2m;
 
-  // loading state:
   const loadingState = (
-    <div className="text-center flex justify-center items-center mt-32">
-      <TailSpin color="#fff" height={100} width={100} />
+    <div className="text-white poppins-medium pt-5 lg:p-10 xl:p-16 flex flex-col lg:flex-row items-center lg:items-start justify-around">
+      <Tilt tiltMaxAngleX={7} tiltMaxAngleY={7}>
+        <div className="temperature-div cursor-pointer w-56 h-56 mt-6 lg:w-60 lg:h-60 flex justify-center text-center items-center rounded-xl drop-shadow-md shadow-md mb-6 lg:mb-0">
+          <div className="flex items-center flex-col lg:items-center">
+            <Skeleton width={180} height={100} />
+            <Skeleton width={180} height={30} className="mt-3" />
+          </div>
+        </div>
+      </Tilt>
+      <WeatherDetails />
     </div>
   );
 
